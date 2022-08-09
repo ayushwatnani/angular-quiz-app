@@ -11,7 +11,7 @@
     <h1 style="font-family: cursive; text-align: center">All the Best!!</h1>
     <div class="name col-md-4 my-3">
         <label for="fname">Enter Your Name :</label>
-        <input id="fname" type="text" class="form-control">
+        <input #name id="fname" type="text" class="form-control">
     </div>
-    <button class="btn btn-lg btn-primary" routerLink="/question">Start the Quiz!!</button>
+    <button class="btn btn-lg btn-primary" routerLink="/question" (click)="startQuiz()">Start the Quiz!!</button>
 </div>

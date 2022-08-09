@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-2 mb-3">
     <div class="card">
         <div class="d-flex p-3 justify-content-between">
             <div class="image">
@@ -6,21 +6,21 @@
             </div>
             <div class="quiz-header">
                 <div style="font-family: cursive;">Angular and TypeScript Quiz!</div>
-                <span style="font-family: italic;">Welcome User</span>
+                <span style="font-family: italic;">Welcome <span class="text-bold">{{ name }}</span></span>
             </div>
         </div>
 
         <div class="d-flex justify-content-around py-3">
             <div class="score">
-                <h5>20 Points</h5>
+                <h5>{{ points }} Points</h5>
             </div>
 
             <div class="question-remain">
-                <span style="font-family: italic;">Question 1 of 9</span>
+                <span style="font-family: italic;">Question {{currentQuestion+1}} of {{ questionList.length }}</span>
             </div>
 
             <div class="timer">
-                60 sec
+                {{ counter }} sec
             </div>        
         </div>
         <div class="progress mb-3">
@@ -29,40 +29,25 @@
 
         <div class="question">
             <div class="card">
-                <h3>What is your name ?</h3>
+                <h3>{{ questionList[currentQuestion]?.questionText }}</h3>
             </div>
         </div>
         <div class="option">
-            <ol>
+            <ol *ngFor="let option of questionList[currentQuestion]?.options">
                 <li>
                     <div class="card">
-                        Sashi
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        John
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        Danny
-                    </div>
-                </li>
-                <li>
-                    <div class="card">
-                        Daniels
+                        {{ option.text }}
                     </div>
                 </li>
             </ol>
         </div>
 
         <div class="d-flex justify-content-between">
-            <button class="btn"><i class="fa fa-chevron-left fa-3x text-primary" aria-hidden="true"></i>
+            <button [disabled]="currentQuestion===0" class="btn" (click)="previousQuestion()"><i class="fa fa-chevron-left fa-3x text-primary" aria-hidden="true"></i>
             </button>
             <button class="btn"><i class="fa fa-refresh fa-3x text-primary" aria-hidden="true"></i>
             </button>
-            <button class="btn"><i class="fa fa-chevron-right fa-3x text-primary" aria-hidden="true"></i></button>
+            <button class="btn" (click)="nextQuestion()"><i class="fa fa-chevron-right fa-3x text-primary" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>
